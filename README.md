@@ -26,44 +26,6 @@ Both simulated annealing and a genetic algorithm serve as good approaches to the
 
 # Lisp
 The local search algorithms were implemented using the Lisp programming language in Common Lisp syntax. Lisp is a functional and interpreted language, good for rapid prototyping. Other languages such as Python were also considered for this project. 
-
-# Pseudocode for a Genetic Algorithm (Russell, 129)
-function GENETIC-ALGORITHM (population,FITNESS-FN) returns an individual
- 	inputs: population, a set of individuals
-    	 FITNESS-FN, a function that measures the fitness of an individual
-
- 	repeat
-   		new_population ← empty set
-   for i = 1 to SIZE(population) do
-     x ← RANDOM-SELECTION(population,FITNESS-FN)
-     y ← RANDOM-SELECTION(population,FITNESS-FN)
-     child ← REPRODUCE(x,y)
-     if (small random probability) then child ← MUTATE(child)
-     add child to new_population
-   population ← new_population
- until some individual is fit enough, or enough time has elapsed
- return the best individual in population, according to FITNESS-FN
-
-function REPRODUCE(x, y) returns an individual
- 	inputs: x,y, parent individuals
-
- 	n ← LENGTH(x); c ← random number from 1 to n
- 	return APPEND(SUBSTRING(x, 1, c),SUBSTRING(y, c+1, n))
-
-# Pseudocode for Simulated Annealing (Russell, 126)
-
-function SIMULATED-ANNEALING(problem,schedule) returns a solution state
-inputs: problem, a problem
-    	 schedule, a mapping from time to "temperature"
-
- 	current ← MAKE-NODE(problem.INITIAL-STATE)
- 	for t = 1 to ∞ do
-T ← schedule(t)
-   if T = 0 then return current
-   next ← a randomly selected successor of current
-   ΔE ← next.VALUE - current.VALUE
-   if ΔE > 0 then current ← next
-   else current ← next only with probability eΔE/T
    
 # Methods
 Both simulated annealing and a genetic algorithm, closely emulating algorithms described by Stuart J. Russell and Peter Norvig, were implemented with Common Lisp using CLOS. The algorithms are domain-independent and were applied to two problems: the 8-queens problem and the traveling salesperson problem. 
